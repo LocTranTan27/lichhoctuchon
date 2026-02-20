@@ -3,65 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản Lý Lịch Học - Pro</title>
+    <title>Lịch Học Cá Nhân - GMT+7</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <div class="header-content">
-            <h1>Lịch Học Cá Nhân</h1>
-            <div id="real-time-clock" class="clock">00:00:00</div>
-        </div>
+        <h1><span class="icon">📅</span> Lịch Học Cá Nhân</h1>
+        <div id="current-time">--/--/---- 00:00:00</div>
     </header>
 
-    <main class="main-layout">
-        <section class="column form-section">
-            <h2 id="form-title">Thêm Buổi Học</h2>
-            <form id="study-form">
-                <input type="hidden" id="edit-id">
-                <div class="form-group">
-                    <label>Ngày học (DD/MM/YYYY):</label>
-                    <input type="date" id="input-date" required>
-                </div>
-                <div class="form-group">
-                    <label>Môn học:</label>
-                    <input type="text" id="input-subject" placeholder="Tên môn học..." required>
-                </div>
-                <div class="row">
+    <main class="container">
+        <section class="main-content">
+            <div class="card card-form">
+                <h3>Thêm Buổi Học Mới</h3>
+                <form id="study-form">
+                    <input type="hidden" id="edit-id">
                     <div class="form-group">
-                        <label>Bắt đầu:</label>
-                        <input type="time" id="input-start" required>
+                        <label>Ngày học (dd/mm/yyyy):</label>
+                        <input type="date" id="study-date" required>
                     </div>
                     <div class="form-group">
-                        <label>Kết thúc:</label>
-                        <input type="time" id="input-end" required>
+                        <label>Tên môn học:</label>
+                        <input type="text" id="subject-name" placeholder="Ví dụ: C++ Cơ bản" required>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label>Ghi chú:</label>
-                    <textarea id="input-note" rows="2"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Link YouTube:</label>
-                    <textarea id="input-videos" rows="2" placeholder="Dán link vào đây..."></textarea>
-                </div>
-                <button type="submit" id="btn-save" class="btn-primary">Lưu Lịch</button>
-                <button type="button" id="btn-cancel" class="btn-secondary" style="display:none;">Hủy sửa</button>
-            </form>
-        </section>
-
-        <section class="column calendar-section">
-            <div class="calendar-header">
-                <h2>Lịch Ngày: <span id="display-selected-date"></span></h2>
-                <input type="date" id="filter-date">
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>Giờ bắt đầu:</label>
+                            <input type="time" id="start-time" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Giờ kết thúc:</label>
+                            <input type="time" id="end-time" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Ghi chú:</label>
+                        <textarea id="notes" rows="2"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Link YouTube (phân tách bằng dấu phẩy):</label>
+                        <input type="text" id="youtube-links" placeholder="https://www.youtube.com/watch?v=...">
+                    </div>
+                    <button type="submit" id="btn-save">Lưu Buổi Học</button>
+                    <button type="button" id="btn-cancel" class="hidden">Hủy</button>
+                </form>
             </div>
-            <div id="schedule-timeline" class="timeline"></div>
+
+            <div class="card card-calendar">
+                <div class="calendar-header">
+                    <button id="prev-day">&lt;</button>
+                    <h2 id="viewing-date">20/02/2026</h2>
+                    <button id="next-day">&gt;</button>
+                </div>
+                <div id="timeline" class="timeline">
+                    </div>
+            </div>
         </section>
 
-        <aside class="column queue-section">
-            <h3>Hàng Chờ Sắp Tới</h3>
-            <div id="upcoming-queue" class="queue-list">
-                </div>
+        <aside class="sidebar">
+            <div class="card">
+                <h3>Hàng Chờ (Sắp Tới)</h3>
+                <div id="queue-list" class="queue-list">
+                    </div>
+            </div>
         </aside>
     </main>
 
