@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lịch Học Cá Nhân</title>
+    <title>Quản Lý Lịch Học - Pro</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <div class="header-content">
-            <h1>Học Tập Cùng Bạn</h1>
+            <h1>Lịch Học Cá Nhân</h1>
             <div id="real-time-clock" class="clock">00:00:00</div>
         </div>
     </header>
 
-    <main class="container">
-        <section class="form-section">
-            <h2 id="form-title">Thêm Buổi Học Mới</h2>
+    <main class="main-layout">
+        <section class="column form-section">
+            <h2 id="form-title">Thêm Buổi Học</h2>
             <form id="study-form">
                 <input type="hidden" id="edit-id">
                 <div class="form-group">
-                    <label>Ngày học:</label>
+                    <label>Ngày học (DD/MM/YYYY):</label>
                     <input type="date" id="input-date" required>
                 </div>
                 <div class="form-group">
                     <label>Môn học:</label>
-                    <input type="text" id="input-subject" placeholder="VD: Lập trình C++, Toán..." required>
+                    <input type="text" id="input-subject" placeholder="Tên môn học..." required>
                 </div>
                 <div class="row">
                     <div class="form-group">
@@ -39,28 +39,30 @@
                 </div>
                 <div class="form-group">
                     <label>Ghi chú:</label>
-                    <textarea id="input-note" rows="2" placeholder="Nội dung cần lưu ý..."></textarea>
+                    <textarea id="input-note" rows="2"></textarea>
                 </div>
                 <div class="form-group">
-                    <label>Link YouTube (mỗi link một dòng):</label>
-                    <textarea id="input-videos" rows="2" placeholder="Dán link youtube vào đây..."></textarea>
+                    <label>Link YouTube:</label>
+                    <textarea id="input-videos" rows="2" placeholder="Dán link vào đây..."></textarea>
                 </div>
-                <div class="form-actions">
-                    <button type="submit" id="btn-save" class="btn-primary">Lưu Buổi Học</button>
-                    <button type="button" id="btn-cancel" class="btn-secondary" style="display:none;">Hủy</button>
-                </div>
+                <button type="submit" id="btn-save" class="btn-primary">Lưu Lịch</button>
+                <button type="button" id="btn-cancel" class="btn-secondary" style="display:none;">Hủy sửa</button>
             </form>
         </section>
 
-        <section class="calendar-section">
+        <section class="column calendar-section">
             <div class="calendar-header">
-                <h2>Lịch Trình</h2>
+                <h2>Lịch Ngày: <span id="display-selected-date"></span></h2>
                 <input type="date" id="filter-date">
             </div>
-            
-            <div id="schedule-timeline" class="timeline">
-                </div>
+            <div id="schedule-timeline" class="timeline"></div>
         </section>
+
+        <aside class="column queue-section">
+            <h3>Hàng Chờ Sắp Tới</h3>
+            <div id="upcoming-queue" class="queue-list">
+                </div>
+        </aside>
     </main>
 
     <script src="script.js"></script>
